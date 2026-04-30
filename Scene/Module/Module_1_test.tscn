@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://y6jrm1dcvs3h"]
 
 [ext_resource type="PackedScene" uid="uid://b0h4f34ach8i7" path="res://Models/Cooking Utensil/Pan/pan_006.gltf" id="2_3qc2y"]
-[ext_resource type="PackedScene" uid="uid://7x5q0qule6c2" path="res://Models/Furniture/Stove/stove_multi.gltf" id="2_6ai84"]
+[ext_resource type="PackedScene" uid="uid://bls1b6sc7rwgh" path="res://Models/Furniture/Stove Single/stove_single.gltf" id="2_6ai84"]
 
 [node name="Module_Test" type="Node3D" unique_id=1598669672]
 
@@ -29,16 +29,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40000004, 0.70000005, 1.45)
 use_collision = true
 size = Vector3(3.5, 1, 0.1)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=1801707328]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0745116, 0.40000004, -0.100000024)
-use_collision = true
-size = Vector3(0.54902345, 0.4, 0.6)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="." unique_id=308595130]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0745116, 0.40000004, 1.1)
-use_collision = true
-size = Vector3(0.54902345, 0.4, 0.6)
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=368771824]
 transform = Transform3D(-4.371139e-08, -0.25881907, 0.9659258, 0, 0.9659259, 0.25881907, -1, 1.13133405e-08, -4.222196e-08, -0.40000004, 0.9, 0.4)
 fov = 60.0
@@ -48,5 +38,5 @@ far = 2.3
 [node name="pan_0062" parent="." unique_id=1250152468 instance=ExtResource("2_3qc2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.4, 2)
 
-[node name="stove_multi2" parent="." unique_id=633948077 instance=ExtResource("2_6ai84")]
-transform = Transform3D(7.4505806e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 7.4505806e-08, -0.9000001, 0.30000004, 0.39999998)
+[node name="stove_single2" parent="." unique_id=1477819551 instance=ExtResource("2_6ai84")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.25, 0.20000002, 1)

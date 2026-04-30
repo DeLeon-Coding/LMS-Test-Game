@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://7x5q0qule6c2"
-path="res://.godot/imported/stove_multi.gltf-f64a1197d79bcb6d0f932006a259994e.scn"
+path="res://.godot/imported/stove_multi.gltf-9d74d10426b03ee80d994c596f5b6b4b.scn"
 
 [deps]
 
-source_file="res://Models/Furniture/Stove/stove_multi.gltf"
-dest_files=["res://.godot/imported/stove_multi.gltf-f64a1197d79bcb6d0f932006a259994e.scn"]
+source_file="res://Models/Furniture/Stove Multi/stove_multi.gltf"
+dest_files=["res://.godot/imported/stove_multi.gltf-9d74d10426b03ee80d994c596f5b6b4b.scn"]
 
 [params]
 
@@ -41,7 +41,7 @@ _subresources={
 "materials": {
 "restaurant": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Models/Furniture/Stove/matt_stove_multi.tres",
+"use_external/fallback_path": "res://Models/Furniture/Stove Multi/matt_stove_multi.tres",
 "use_external/path": "uid://qlyu66lxr6ms"
 }
 }
