@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b8qaxc5vgobtm"]
+
+[ext_resource type="PackedScene" uid="uid://duippv7yb8goi" path="res://Models/Ingredient/Burger/food_ingredient_burger_uncooked.gltf" id="1_iyyni"]
+
+[node name="Uncooked patty" type="Node3D" unique_id=218684711]
+
+[node name="food_ingredient_burger_uncooked2" parent="." unique_id=41077703 instance=ExtResource("1_iyyni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0.6)

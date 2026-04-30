@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://y6jrm1dcvs3h"]
 
-[ext_resource type="PackedScene" uid="uid://duippv7yb8goi" path="res://Models/Ingredient/Burger/food_ingredient_burger_uncooked.gltf" id="1_so81s"]
 [ext_resource type="PackedScene" uid="uid://b0h4f34ach8i7" path="res://Models/Cooking Utensil/Pan/pan_006.gltf" id="2_3qc2y"]
-[ext_resource type="PackedScene" uid="uid://mg14mw7aa6gq" path="res://Models/Cooking Utensil/Pan A/pan_A.gltf" id="3_m868i"]
+[ext_resource type="PackedScene" uid="uid://7x5q0qule6c2" path="res://Models/Furniture/Stove/stove_multi.gltf" id="2_6ai84"]
 
 [node name="Module_Test" type="Node3D" unique_id=1598669672]
 
@@ -46,11 +45,8 @@ fov = 60.0
 near = 0.015
 far = 2.3
 
-[node name="food_ingredient_burger_uncooked2" parent="." unique_id=41077703 instance=ExtResource("1_so81s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9000001, 0.7, 0.6)
-
 [node name="pan_0062" parent="." unique_id=1250152468 instance=ExtResource("2_3qc2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.4, 2)
 
-[node name="pan_A2" parent="." unique_id=1934142823 instance=ExtResource("3_m868i")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9, 0.6, 0.4)
+[node name="stove_multi2" parent="." unique_id=633948077 instance=ExtResource("2_6ai84")]
+transform = Transform3D(7.4505806e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 7.4505806e-08, -0.9000001, 0.30000004, 0.39999998)
