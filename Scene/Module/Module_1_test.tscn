@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://y6jrm1dcvs3h"]
 
 [ext_resource type="PackedScene" uid="uid://b0h4f34ach8i7" path="res://Models/Cooking Utensil/Pan/pan_006.gltf" id="2_3qc2y"]
-[ext_resource type="PackedScene" uid="uid://bls1b6sc7rwgh" path="res://Models/Furniture/Stove Single/stove_single.gltf" id="2_6ai84"]
 
 [node name="Module_Test" type="Node3D" unique_id=1598669672]
 
@@ -37,6 +36,3 @@ far = 2.3
 
 [node name="pan_0062" parent="." unique_id=1250152468 instance=ExtResource("2_3qc2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.4, 2)
-
-[node name="stove_single2" parent="." unique_id=1477819551 instance=ExtResource("2_6ai84")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.25, 0.20000002, 1)
