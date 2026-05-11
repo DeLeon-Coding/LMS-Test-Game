@@ -32,6 +32,6 @@ offset_top = 442.0
 offset_right = 684.99866
 offset_bottom = 526.0
 
-[connection signal="pressed" from="Control/Start" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Control/Option" to="." method="_on_option_pressed"]
 [connection signal="pressed" from="Control/Quit" to="." method="_on_quit_pressed"]
