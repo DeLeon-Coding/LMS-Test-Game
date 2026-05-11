@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c5p68kuuig7mg"
-path="res://.godot/imported/floor_kitchen.gltf-ed6ad9039cb128e4531b186d052bfeca.scn"
+uid="uid://crs6hwitl46i5"
+path="res://.godot/imported/oven.gltf-bdca1ceb1c019d78daf86537c06139a1.scn"
 
 [deps]
 
-source_file="res://Models/Floor/floor_kitchen.gltf"
-dest_files=["res://.godot/imported/floor_kitchen.gltf-ed6ad9039cb128e4531b186d052bfeca.scn"]
+source_file="res://Models/Furniture/Oven/oven.gltf"
+dest_files=["res://.godot/imported/oven.gltf-bdca1ceb1c019d78daf86537c06139a1.scn"]
 
 [params]
 
@@ -41,8 +41,8 @@ _subresources={
 "materials": {
 "restaurant": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Models/Floor/floor_kitchen.tres",
-"use_external/path": "uid://ddpgsxjri5slw"
+"use_external/fallback_path": "res://Models/Furniture/Oven/oven.tres",
+"use_external/path": "uid://dds2mnsklujds"
 }
 }
 }

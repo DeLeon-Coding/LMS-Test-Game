@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bktgpaj6sqvpn" path="res://Scene/Module/module_1_test.gd" id="1_6ai84"]
 [ext_resource type="PackedScene" uid="uid://b0h4f34ach8i7" path="res://Models/Cooking Utensil/Pan/pan_006.gltf" id="2_3qc2y"]
+[ext_resource type="PackedScene" uid="uid://c5p68kuuig7mg" path="res://Models/Floor/floor_kitchen.gltf" id="3_du13i"]
+[ext_resource type="PackedScene" uid="uid://dbk2wm3x25mdn" path="res://Models/Floor/floor_kitchen_small.gltf" id="4_6ogvm"]
+[ext_resource type="PackedScene" uid="uid://7x5q0qule6c2" path="res://Models/Furniture/Stove Multi/stove_multi.gltf" id="5_6050q"]
+[ext_resource type="PackedScene" uid="uid://dm4l5t22gy6mu" path="res://Models/Furniture/KitchenCounter/kitchencounter_straight_A.gltf" id="6_ny0st"]
+[ext_resource type="PackedScene" uid="uid://crs6hwitl46i5" path="res://Models/Furniture/Oven/oven.gltf" id="7_gkr5n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ai84"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,7 +22,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ai84"]
-size = Vector3(0.19999999, 0.19999999, 0.19999999)
+size = Vector3(0.22, 0.2, 0.22)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ai84"]
 transparency = 1
@@ -41,8 +46,8 @@ transform = Transform3D(-0.9003188, -0.37149182, 0.22675957, 0, 0.5210097, 0.853
 shadow_enabled = true
 
 [node name="Floor" type="CSGBox3D" parent="." unique_id=1408191155]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999994, 0)
-size = Vector3(10.5, 0.2, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.299999, 0.099999994, 4.6499987)
+size = Vector3(69.1, 0.2, 46.7)
 
 [node name="Wall" type="CSGBox3D" parent="." unique_id=48594312]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40000004, 0.70000005, -0.45000002)
@@ -65,8 +70,8 @@ use_collision = true
 size = Vector3(3.5, 1, 0.1)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=368771824]
-transform = Transform3D(-4.371139e-08, -0.40673664, 0.9135454, 0, 0.9135454, 0.40673664, -1, 1.7779023e-08, -3.993234e-08, -0.07999998, 0.885, 0.5)
-fov = 87.8691
+transform = Transform3D(-4.371139e-08, -0.4226183, 0.9063078, 0, 0.9063078, 0.4226183, -1, 1.8473232e-08, -3.9615973e-08, -1.279985, 3.2849975, 9.300013)
+fov = 90.0
 far = 30.08
 
 [node name="pan_0062" parent="." unique_id=1250152468 instance=ExtResource("2_3qc2y")]
@@ -77,10 +82,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90000004, 0.2900001, 0.637
 size = Vector3(0.2, 0.2, 0.2)
 
 [node name="TableArea" type="Area3D" parent="." unique_id=1589200105 groups=["Clickable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0.39999998, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3, 0.39999998, 10.500001)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TableArea" unique_id=1537050136]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.109999985, -0.36300004)
+transform = Transform3D(9.485, 0, 0, 0, 9.485, 0, 0, 0, 9.485, 0.09485006, 0.83850014, -0.26815033)
 shape = SubResource("BoxShape3D_6ai84")
 debug_color = Color(0.972549, 0, 0.44705883, 1)
 
@@ -90,7 +95,7 @@ material_override = SubResource("StandardMaterial3D_6ai84")
 mesh = SubResource("BoxMesh_6ai84")
 
 [node name="Marker3D" type="Marker3D" parent="TableArea" unique_id=1266957334]
-transform = Transform3D(7.2326195e-08, -0.28680322, 0.9579895, 2.165304e-08, 0.9579895, 0.28680322, -1, 0, 7.54979e-08, 0.71, 0.06999999, -0.36999995)
+transform = Transform3D(7.2326195e-08, -0.28680322, 0.9579895, 2.165304e-08, 0.9579895, 0.28680322, -1, 0, 7.54979e-08, 1.81, 2.4700003, -0.3699999)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1730513534]
 
@@ -107,5 +112,32 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/hover = SubResource("StyleBoxFlat_6ai84")
 text = "Go Back"
+
+[node name="floor_kitchen2" parent="." unique_id=1065915352 instance=ExtResource("3_du13i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7000003, -0.1, -6.6)
+
+[node name="floor_kitchen_small2" parent="." unique_id=2074498062 instance=ExtResource("4_6ogvm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2000012, -0.20000002, -2.9)
+
+[node name="floor_kitchen_small2" parent="floor_kitchen_small2" unique_id=171159890 instance=ExtResource("4_6ogvm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09999871, 0, -4.2000003)
+
+[node name="stove_multi2" parent="." unique_id=2073616249 instance=ExtResource("5_6050q")]
+transform = Transform3D(-4.371139e-07, 0, 10, 0, 10, 0, -10, 0, -4.371139e-07, -3.9000006, 1.1500001, 7.400001)
+
+[node name="floor_kitchen_small3" parent="." unique_id=218639555 instance=ExtResource("4_6ogvm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2000027, -0.20000003, -4.9000006)
+
+[node name="kitchencounter_straight_A2" parent="." unique_id=137131899 instance=ExtResource("6_ny0st")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.9000006, 0.19999997, 7.4)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1020746660]
+transform = Transform3D(-4.371139e-07, 0, 10, 0, 10, 0, -10, 0, -4.371139e-07, -4.3, 1.08, 10.2)
+
+[node name="stove_multi2" parent="Node3D" unique_id=305992141 instance=ExtResource("5_6050q")]
+transform = Transform3D(1, 0, 3.5527137e-15, 0, 1, 0, -3.5527137e-15, 0, 1, 0, 0, 0)
+
+[node name="oven2" parent="Node3D" unique_id=195628216 instance=ExtResource("7_gkr5n")]
+transform = Transform3D(0.101, 0, 0, 0, 0.101, 0, 0, 0, 0.101, 0, -0.108, 0)
 
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]
