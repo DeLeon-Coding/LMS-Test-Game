@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c75o03fj13ln3"]
+
+[ext_resource type="PackedScene" uid="uid://dbk2wm3x25mdn" path="res://Models/Floor/floor_kitchen_small.gltf" id="1_p4a2o"]
+[ext_resource type="PackedScene" uid="uid://cqubfthlwqyrd" path="res://Models/gltf/wall.gltf" id="2_y1id4"]
+[ext_resource type="PackedScene" uid="uid://bxe75u3edc042" path="res://Models/gltf/wall_decorated.gltf" id="3_kutpp"]
+[ext_resource type="PackedScene" uid="uid://d0uorgkwp2s0b" path="res://Models/gltf/wall_doorway.gltf" id="4_uvd1k"]
+[ext_resource type="PackedScene" uid="uid://d3qp60mckgr7y" path="res://Models/gltf/wall_half.gltf" id="5_2kgeq"]
+[ext_resource type="PackedScene" uid="uid://dq68hdd8sh75k" path="res://Models/gltf/wall_orderwindow.gltf" id="6_4gh74"]
+[ext_resource type="PackedScene" uid="uid://d4kmp4w5gv212" path="res://Models/gltf/wall_orderwindow_decorated.gltf" id="7_7ihe8"]
+[ext_resource type="PackedScene" uid="uid://drxfeuw22w8bf" path="res://Models/gltf/wall_window_closed.gltf" id="8_11p68"]
+[ext_resource type="PackedScene" uid="uid://b3shyhg0ifqd" path="res://Models/gltf/wall_window_open.gltf" id="9_51yi4"]
+
+[node name="Walls and Floor" type="Node3D" unique_id=1564918788]
+
+[node name="floor_kitchen_small2" parent="." unique_id=2074498062 instance=ExtResource("1_p4a2o")]
+
+[node name="wall2" parent="." unique_id=958900577 instance=ExtResource("2_y1id4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3000001, 0, 0.1)
+
+[node name="wall_decorated2" parent="." unique_id=1560036239 instance=ExtResource("3_kutpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5000005, 0, 0.1)
+
+[node name="wall_doorway2" parent="." unique_id=35756273 instance=ExtResource("4_uvd1k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3000001, 0, 0.1)
+
+[node name="wall_half2" parent="." unique_id=175465984 instance=ExtResource("5_2kgeq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2000003, 0, 0.1)
+
+[node name="wall_orderwindow2" parent="." unique_id=1593596594 instance=ExtResource("6_4gh74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3000001, 0, 0.1)
+
+[node name="wall_orderwindow_decorated2" parent="." unique_id=2067886913 instance=ExtResource("7_7ihe8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3000001, 0, 0.1)
+
+[node name="wall_window_closed2" parent="." unique_id=1449435653 instance=ExtResource("8_11p68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3000001, 0, 0.1)
+
+[node name="wall_window_open2" parent="." unique_id=127475457 instance=ExtResource("9_51yi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3000001, 0, 0.1)

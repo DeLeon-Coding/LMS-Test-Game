@@ -4,6 +4,7 @@ extends Node3D
 @onready var back_button: Button = $CanvasLayer/BackButton
 var current_target: Area3D = null
 var default_transform: Transform3D
+var selected_item: Node3D = null
 
 func _ready() -> void:
 	# Save the starting camera position
@@ -11,6 +12,11 @@ func _ready() -> void:
 	if back_button:
 		back_button.hide()
 		back_button.pressed.connect(_on_back_button_pressed)
+	
+	# Connect Selectable items (objects you pick up)
+	for item in get_tree().get_nodes_in_group("Selectable"):
+		if item is CollisionObject3D:
+			item.input_event.connect(_on_item_clicked.bind(item))
 	
 	# Automatically connect all nodes in the "Clickable" group
 	# This avoids having to hardcode names like "TableArea"
@@ -49,6 +55,11 @@ func _find_highlight_mesh(area: Area3D) -> MeshInstance3D:
 			return child as MeshInstance3D
 	return null
 
+func _on_item_clicked(_camera: Node, event: InputEvent, _pos: Vector3, _norm: Vector3, _idx: int, item: Node3D) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		selected_item = item
+		print("Selected: ", item.name)
+
 func _on_back_button_pressed() -> void:
 	current_target = null
 	move_camera(default_transform)
@@ -58,6 +69,14 @@ func _on_back_button_pressed() -> void:
 func _on_area_clicked(_camera: Node, event: InputEvent, _click_position: Vector3, _click_normal: Vector3, _shape_idx: int, area: Area3D) -> void:
 	# Check for left mouse click
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		
+		# IF WE HAVE AN ITEM SELECTED, PLACE IT INSTEAD OF ZOOMING
+		if selected_item != null:
+			print("Placing ", selected_item.name, " at ", area.name)
+			move_item_to_area(selected_item, area)
+			selected_item = null
+			return # Stop here so we don't also zoom in
+		
 		print("Moving to: ", area.name)
 		current_target = area
 		
@@ -82,3 +101,13 @@ func move_camera(target_transform: Transform3D) -> void:
 	# Move and Rotate simultaneously
 	tween.set_parallel(true)
 	tween.tween_property(main_camera, "global_transform", target_transform, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func move_item_to_area(item: Node3D, area: Area3D) -> void:
+	var target_pos = area.global_position
+	
+	# If the area has a specific PlacementPoint, use that instead
+	if area.has_node("PlacementPoint"):
+		target_pos = area.get_node("PlacementPoint").global_position
+	
+	var tween = create_tween()
+	tween.tween_property(item, "global_position", target_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
