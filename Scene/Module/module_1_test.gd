@@ -11,27 +11,47 @@ func _ready() -> void:
 	default_transform = main_camera.global_transform
 	if back_button:
 		back_button.hide()
-		back_button.pressed.connect(_on_back_button_pressed)
+		# Only connect if not already connected (prevents error if connected in editor)
+		if not back_button.pressed.is_connected(_on_back_button_pressed):
+			back_button.pressed.connect(_on_back_button_pressed)
 	
 	# Connect Selectable items (objects you pick up)
 	for item in get_tree().get_nodes_in_group("Selectable"):
 		if item is CollisionObject3D:
-			item.input_event.connect(_on_item_clicked.bind(item))
+			# Use is_connected check to avoid duplicate connection errors
+			var callable = _on_item_clicked.bind(item)
+			if not item.input_event.is_connected(callable):
+				item.input_event.connect(callable)
 	
-	# Automatically connect all nodes in the "Clickable" group
-	# This avoids having to hardcode names like "TableArea"
-	for area in get_tree().get_nodes_in_group("Clickable"):
+	# Automatically connect all interactive areas (Clickable and Placement)
+	# This ensures "Cooking area" and other placement spots are detected
+	var interactive_areas = get_tree().get_nodes_in_group("Clickable")
+	for node in get_tree().get_nodes_in_group("Placement"):
+		if not interactive_areas.has(node):
+			interactive_areas.append(node)
+			
+	for area in interactive_areas:
 		if area is Area3D:
-			area.input_event.connect(_on_area_clicked.bind(area))
+			# Connect click signals
+			var click_callable = _on_area_clicked.bind(area)
+			if not area.input_event.is_connected(click_callable):
+				area.input_event.connect(click_callable)
+				
 			# Connect hover signals
-			area.mouse_entered.connect(_on_mouse_entered.bind(area))
-			area.mouse_exited.connect(_on_mouse_exited.bind(area))
+			var enter_callable = _on_mouse_entered.bind(area)
+			if not area.mouse_entered.is_connected(enter_callable):
+				area.mouse_entered.connect(enter_callable)
+				
+			var exit_callable = _on_mouse_exited.bind(area)
+			if not area.mouse_exited.is_connected(exit_callable):
+				area.mouse_exited.connect(exit_callable)
+				
 			# Hide highlight by default
 			var mesh = _find_highlight_mesh(area)
 			if mesh:
 				mesh.hide()
 		else:
-			print("Warning: Node '", area.name, "' is in 'Clickable' group but is not an Area3D.")
+			print("Warning: Node '", area.name, "' is in an interactive group but is not an Area3D.")
 
 func _on_mouse_entered(area: Area3D) -> void:
 	# Don't highlight if we are already at this target
@@ -71,7 +91,8 @@ func _on_area_clicked(_camera: Node, event: InputEvent, _click_position: Vector3
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		
 		# IF WE HAVE AN ITEM SELECTED, PLACE IT INSTEAD OF ZOOMING
-		if selected_item != null:
+		# We check if the area is in the "Placement" group to restrict movement
+		if selected_item != null and area.is_in_group("Placement"):
 			print("Placing ", selected_item.name, " at ", area.name)
 			move_item_to_area(selected_item, area)
 			selected_item = null
@@ -111,3 +132,32 @@ func move_item_to_area(item: Node3D, area: Area3D) -> void:
 	
 	var tween = create_tween()
 	tween.tween_property(item, "global_position", target_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	
+	# Trigger cooking process if placed on a cooking area
+	tween.finished.connect(_on_item_placed.bind(item, area))
+
+func _on_item_placed(item: Node3D, area: Area3D) -> void:
+	# Check if the area is meant for cooking
+	if area.name.to_lower().contains("cooking") or area.name.to_lower().contains("pan"):
+		start_cooking(item)
+
+func start_cooking(item: Node3D) -> void:
+	print("Cooking started for: ", item.name)
+	
+	# 1. Simulate cooking time (3 seconds)
+	await get_tree().create_timer(3.0).timeout
+	
+	# 2. Change shape/appearance
+	# We use a squash and stretch animation to simulate the "transformation"
+	var transform_tween = create_tween()
+	transform_tween.set_parallel(false)
+	# Squash down
+	transform_tween.tween_property(item, "scale", Vector3(1.4, 0.2, 1.4), 0.2).set_trans(Tween.TRANS_CUBIC)
+	# Pop back up slightly larger (cooked)
+	transform_tween.tween_property(item, "scale", Vector3(1.1, 1.1, 1.1), 0.4).set_trans(Tween.TRANS_ELASTIC)
+	
+	await transform_tween.finished
+	print("Cooking finished!")
+	
+	# Reset scale to normal if needed, or keep the 'cooked' scale
+	# item.scale = Vector3(1.0, 1.0, 1.0)

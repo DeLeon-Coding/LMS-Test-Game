@@ -5,18 +5,19 @@
 [ext_resource type="PackedScene" uid="uid://dbk2wm3x25mdn" path="res://Models/Floor/floor_kitchen_small.gltf" id="4_6ogvm"]
 [ext_resource type="PackedScene" uid="uid://7x5q0qule6c2" path="res://Models/Furniture/Stove Multi/stove_multi.gltf" id="5_6050q"]
 [ext_resource type="PackedScene" uid="uid://dm4l5t22gy6mu" path="res://Models/Furniture/KitchenCounter/kitchencounter_straight_A.gltf" id="6_ny0st"]
+[ext_resource type="PackedScene" uid="uid://b1jtft8y7k2ha" path="res://Models/gltf/pan_A.gltf" id="7_du13i"]
 [ext_resource type="PackedScene" uid="uid://crs6hwitl46i5" path="res://Models/Furniture/Oven/oven.gltf" id="7_gkr5n"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ai84"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_du13i"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_3qc2y"]
-sky_material = SubResource("ProceduralSkyMaterial_6ai84")
+[sub_resource type="Sky" id="Sky_6ogvm"]
+sky_material = SubResource("ProceduralSkyMaterial_du13i")
 
-[sub_resource type="Environment" id="Environment_m868i"]
+[sub_resource type="Environment" id="Environment_6050q"]
 background_mode = 2
-sky = SubResource("Sky_3qc2y")
+sky = SubResource("Sky_6ogvm")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -31,27 +32,36 @@ emission_energy_multiplier = 2.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ai84"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_du13i"]
-custom_solver_bias = 0.146
-margin = 2.615
-height = 0.036949463
-radius = 0.032226563
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ai84"]
 bg_color = Color(0.5058824, 0.5568628, 0.9254902, 0.39215687)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ogvm"]
 size = Vector3(1, 1, 0.90000004)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_du13i"]
+custom_solver_bias = 0.146
+margin = 2.615
+height = 0.027019333
+radius = 0.04
+
 [node name="Module_Test" type="Node3D" unique_id=1598669672]
 script = ExtResource("1_6ai84")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2098549779]
-environment = SubResource("Environment_m868i")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1671032282]
+environment = SubResource("Environment_6050q")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=112162528]
-transform = Transform3D(-0.9003188, -0.37149182, 0.22675957, 0, 0.5210097, 0.8535508, -0.43523103, 0.76846784, -0.4690748, 0, 1.8000001, 1.3)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1830327658]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 8.2, 0)
 shadow_enabled = true
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1020746660]
+transform = Transform3D(-4.371139e-07, 0, 10, 0, 10, 0, -10, 0, -4.371139e-07, -4.3, 1.08, 11.4)
+
+[node name="stove_multi2" parent="Node3D" unique_id=305992141 instance=ExtResource("5_6050q")]
+transform = Transform3D(1, 0, 3.5527137e-15, 0, 1, 0, -3.5527137e-15, 0, 1, 0, 0, 0)
+
+[node name="oven2" parent="Node3D" unique_id=195628216 instance=ExtResource("7_gkr5n")]
+transform = Transform3D(0.101, 0, 0, 0, 0.101, 0, 0, 0, 0.101, 0, -0.108, 0)
 
 [node name="Floor" type="CSGBox3D" parent="." unique_id=1408191155]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.299999, 0.099999994, 4.6499987)
@@ -102,26 +112,6 @@ mesh = SubResource("BoxMesh_6ai84")
 [node name="Marker3D" type="Marker3D" parent="TableArea" unique_id=1266957334]
 transform = Transform3D(7.2326195e-08, -0.28680322, 0.9579895, 2.165304e-08, 0.9579895, 0.28680322, -1, 0, 7.54979e-08, 1.81, 2.4700003, -0.3699999)
 
-[node name="Node3D" type="Node3D" parent="TableArea" unique_id=1020746660]
-transform = Transform3D(-4.371139e-07, 0, 10, 0, 10, 0, -10, 0, -4.371139e-07, 0, 0.68000007, -0.30000114)
-
-[node name="stove_multi2" parent="TableArea/Node3D" unique_id=305992141 instance=ExtResource("5_6050q")]
-transform = Transform3D(1, 0, 3.5527137e-15, 0, 1, 0, -3.5527137e-15, 0, 1, 0, 0, 0)
-
-[node name="oven2" parent="TableArea/Node3D" unique_id=195628216 instance=ExtResource("7_gkr5n")]
-transform = Transform3D(0.101, 0, 0, 0, 0.101, 0, 0, 0, 0.101, 0, -0.108, 0)
-
-[node name="Cooking area" type="Area3D" parent="TableArea/Node3D" unique_id=158103057 groups=["Placement"]]
-transform = Transform3D(1, 0, 3.5527137e-15, 0, 1, 0, -3.5527137e-15, 0, 1, -0.029999852, 0.29999998, 0.07000008)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TableArea/Node3D/Cooking area" unique_id=324440507 groups=["Placement"]]
-transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, -0.01999998, -0.18752517, -0.01699999)
-shape = SubResource("CylinderShape3D_du13i")
-debug_color = Color(0, 11.708403, 13.469126, 1)
-
-[node name="PlacementPoint" type="Marker3D" parent="TableArea/Node3D" unique_id=1432596472]
-transform = Transform3D(1, 0, 3.5527137e-15, 0, 1, 0, -3.5527137e-15, 0, 1, -0.048000097, 0.38699993, 0.059000075)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1730513534]
 
 [node name="BackButton" type="Button" parent="CanvasLayer" unique_id=923596506]
@@ -166,7 +156,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05000019)
 shape = SubResource("BoxShape3D_6ogvm")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="pan/Area3D/CollisionShape3D" unique_id=800890827]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0.13999939)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4000001, -0.25, -0.1600008)
 size = Vector3(1, 0.5, 0.71999997)
+
+[node name="Cooking area" type="Area3D" parent="." unique_id=158103057 groups=["Placement"]]
+transform = Transform3D(-4.3711393e-07, 0, 10, 0, 10, 0, -10, 0, -4.3711393e-07, -3.5999994, 4.08, 11.699998)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cooking area" unique_id=324440507 groups=["Placement"]]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, -0.01999998, -0.18417875, -0.01699999)
+shape = SubResource("CylinderShape3D_du13i")
+debug_color = Color(0, 11.708403, 13.469126, 1)
+
+[node name="PlacementPoint" type="Marker3D" parent="Cooking area" unique_id=1335218172]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, -0.02399981, -0.13699993, 0.009000033)
+
+[node name="pan_A2" parent="." unique_id=43332209 instance=ExtResource("7_du13i")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -0.69999933, 1.2, 9.9)
 
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

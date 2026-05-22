@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://xgrpodggl15i"]
+
+[ext_resource type="Material" uid="uid://dnsrc3rhxjh2f" path="res://Models/ceiling text/OfficeCeiling002_1K-JPG.tres" id="1_milc2"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_8vcjr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c4bl5"]
+size = Vector3(1, 1, 0.02)
+
+[node name="Ceiling" type="StaticBody3D" unique_id=2100911912]
+transform = Transform3D(15.25, 0, 0, 0, 15.25, 0, 0, 0, 15.25, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1462906094]
+material_override = ExtResource("1_milc2")
+mesh = SubResource("QuadMesh_8vcjr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1788154819]
+shape = SubResource("BoxShape3D_c4bl5")
