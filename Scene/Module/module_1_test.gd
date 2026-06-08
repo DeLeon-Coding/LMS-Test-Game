@@ -46,9 +46,10 @@ func _ready() -> void:
 			if not area.mouse_exited.is_connected(exit_callable):
 				area.mouse_exited.connect(exit_callable)
 				
-			# Hide highlight by default
+			# Setup brightener material and hide highlight by default
 			var mesh = _find_highlight_mesh(area)
 			if mesh:
+				_setup_highlight_material(mesh)
 				mesh.hide()
 		else:
 			print("Warning: Node '", area.name, "' is in an interactive group but is not an Area3D.")
@@ -56,6 +57,10 @@ func _ready() -> void:
 func _on_mouse_entered(area: Area3D) -> void:
 	# Don't highlight if we are already at this target
 	if area == current_target:
+		return
+		
+	# Isolate Cooking Area: Only highlight if zoomed into the TableArea
+	if area.name == "Cooking area" and (current_target == null or current_target.name != "TableArea"):
 		return
 		
 	print("Mouse entered: ", area.name)
@@ -69,11 +74,24 @@ func _on_mouse_exited(area: Area3D) -> void:
 	if mesh:
 		mesh.hide()
 
-func _find_highlight_mesh(area: Area3D) -> MeshInstance3D:
+func _find_highlight_mesh(area: Area3D) -> Node3D:
 	for child in area.get_children():
 		if child.name.to_lower() == "highlightmesh":
-			return child as MeshInstance3D
+			return child as Node3D
 	return null
+
+func _setup_highlight_material(highlight_node: Node3D) -> void:
+	# If this piece is a mesh, give it the transparent brightening material
+	if highlight_node is MeshInstance3D:
+		var mat = StandardMaterial3D.new()
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+		mat.albedo_color = Color(1.0, 1.0, 1.0, 0.4) # 40% opacity white for bright glow
+		highlight_node.material_override = mat
+		
+	# Do the same for all children (handles grouped models like the stove)
+	for child in highlight_node.get_children():
+		_setup_highlight_material(child)
 
 func _on_item_clicked(_camera: Node, event: InputEvent, _pos: Vector3, _norm: Vector3, _idx: int, item: Node3D) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -90,6 +108,10 @@ func _on_area_clicked(_camera: Node, event: InputEvent, _click_position: Vector3
 	# Check for left mouse click
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		
+		# Isolate Cooking Area: Only allow clicking if zoomed into the TableArea
+		if area.name == "Cooking area" and (current_target == null or current_target.name != "TableArea"):
+			return
+			
 		# IF WE HAVE AN ITEM SELECTED, PLACE IT INSTEAD OF ZOOMING
 		# We check if the area is in the "Placement" group to restrict movement
 		if selected_item != null and area.is_in_group("Placement"):
